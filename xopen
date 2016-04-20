@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+project_root = Dir.exist?('.git') ? `git rev-parse --show-toplevel` : Dir.pwd
+
+if project_file = Dir['*.xcworkspace'].first || Dir['*.xcodeproj'].first
+  system 'open', "#{project_root.chomp}/#{project_file}"
+else
+  puts "Could not locate workspace or project in '#{project_root}'"
+end
